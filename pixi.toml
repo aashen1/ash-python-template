@@ -1,11 +1,46 @@
 [workspace]
-authors = ["Ash <aashen1@foxmail.com>"]
+authors = ["Ash(GitHub@aashen1)"]
 channels = ["conda-forge"]
-name = "ash-python-template"
+name = "change-to-your-name"
 platforms = ["linux-64"]
 version = "0.1.0"
 
 [tasks]
+# Code quality
+lint = "ruff check ."
+format = "ruff format ."
+typecheck = "mypy src/"
+# Testing
+test = "pytest"
+# Security
+security = "pip-audit"
+# Documentation
+docs = "mkdocs serve"
+docs-build = "mkdocs build"
+# Changelog
+changelog = "towncrier build"
 
 [dependencies]
 python = "3.12.*"
+
+[pypi-dependencies]
+# Project itself (editable install so pytest can import source code)
+change-to-your-name = { path = ".", editable = true }
+# Code quality
+ruff = "*"
+mypy = "*"
+# Testing
+pytest = "*"
+pytest-cov = "*"
+# Security
+pip-audit = "*"
+# Git hooks
+pre-commit = "*"
+pre-commit-hooks = "*"
+# Documentation
+mkdocs = "*"
+mkdocs-material = "*"
+mkdocstrings = "*"
+mkdocstrings-python = "*"
+# Changelog
+towncrier = "*"
