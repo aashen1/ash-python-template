@@ -1,0 +1,11 @@
+[workspace]
+authors = ["Ash <aashen1@foxmail.com>"]
+channels = ["conda-forge"]
+name = "ash-python-template"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+python = "3.12.*"
