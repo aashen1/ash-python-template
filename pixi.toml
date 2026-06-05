@@ -33,7 +33,6 @@ mypy = "*"
 pytest = "*"
 pytest-cov = "*"
 pytest-mock = ">=3.15.1, <4"
-responses = ">=0.26.1, <0.27"
 # Security
 pip-audit = "*"
 # Git hooks
