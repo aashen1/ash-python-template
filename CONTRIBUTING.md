@@ -17,6 +17,8 @@ Thank you for your interest in contributing to this project!
    cd change-to-your-name
    ```
 
+   <!-- TODO: Replace <your-username> with your actual GitHub username -->
+
 2. Install dependencies
 
    ```bash
