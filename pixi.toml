@@ -18,6 +18,8 @@ security = "pip-audit"
 # Documentation
 docs = "mkdocs serve"
 docs-build = "mkdocs build"
+# Build
+build = "python -m build"
 
 [dependencies]
 python = "3.12.*"
@@ -44,6 +46,7 @@ mkdocs = "*"
 mkdocs-material = "*"
 mkdocstrings = "*"
 mkdocstrings-python = "*"
+build = ">=1.5.0, <2"
 
 # ── Prod feature: non-editable install + runtime deps (for Docker) ────
 [feature.prod.pypi-dependencies]
