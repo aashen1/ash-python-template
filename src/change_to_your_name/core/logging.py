@@ -17,14 +17,18 @@ import structlog
 from change_to_your_name.config import get_settings
 
 
+_configured: bool = False
+
+
 def _is_configured() -> bool:
     """Return ``True`` when :func:`configure_logging` has already run."""
-    return bool(getattr(structlog.testing, "_change_to_your_name_configured", False))
+    return _configured
 
 
 def _mark_configured() -> None:
     """Record that :func:`configure_logging` has been run."""
-    structlog.testing._change_to_your_name_configured = True  # type: ignore[attr-defined]
+    global _configured
+    _configured = True
 
 
 def configure_logging(force: bool = False) -> None:
@@ -35,6 +39,10 @@ def configure_logging(force: bool = False) -> None:
     """
     if _is_configured() and not force:
         return
+
+    if force:
+        global _configured
+        _configured = False
 
     settings = get_settings()
     level = getattr(logging, settings.log_level.upper(), logging.INFO)
