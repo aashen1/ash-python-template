@@ -30,7 +30,6 @@ pixi run pre-commit install
 | Security | `pixi run security` | Run pip-audit vulnerability check |
 | Docs | `pixi run docs` | Start MkDocs dev server |
 | Docs Build | `pixi run docs-build` | Build documentation site |
-| Changelog | `pixi run changelog` | Build changelog with towncrier |
 
 ## Project Structure
 
@@ -38,7 +37,6 @@ pixi run pre-commit install
 src/change_to_your_name/   # Source code
 tests/                      # Test suite
 docs/                       # Documentation
-changes/                    # Towncrier fragments
 ```
 
 ## License
