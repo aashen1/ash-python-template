@@ -11,7 +11,7 @@ from change_to_your_name.config import Settings, get_settings
 def test_default_settings(monkeypatch: pytest.MonkeyPatch) -> None:
     """Defaults match the values declared in the Settings class."""
     # Clear any env vars that might override defaults
-    for key in ["APP_NAME", "APP_ENV", "APP_DEBUG", "LOG_LEVEL", "LOG_JSON", "API_TIMEOUT_SECONDS", "API_MAX_RETRIES"]:
+    for key in ["APP_NAME", "APP_ENV", "APP_DEBUG", "LOG_LEVEL", "LOG_JSON"]:
         monkeypatch.delenv(key, raising=False)
     settings = Settings()
     assert settings.app_name == "change-to-your-name"
@@ -19,8 +19,6 @@ def test_default_settings(monkeypatch: pytest.MonkeyPatch) -> None:
     assert settings.app_debug is True
     assert settings.log_level == "INFO"
     assert settings.log_json is False
-    assert settings.api_timeout_seconds == 30
-    assert settings.api_max_retries == 3
 
 
 def test_environment_override(monkeypatch: pytest.MonkeyPatch) -> None:
@@ -28,14 +26,12 @@ def test_environment_override(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("APP_NAME", "from-env")
     monkeypatch.setenv("LOG_LEVEL", "DEBUG")
     monkeypatch.setenv("LOG_JSON", "true")
-    monkeypatch.setenv("API_TIMEOUT_SECONDS", "5")
 
     settings = Settings()
 
     assert settings.app_name == "from-env"
     assert settings.log_level == "DEBUG"
     assert settings.log_json is True
-    assert settings.api_timeout_seconds == 5
 
 
 def test_invalid_log_level_rejected(monkeypatch: pytest.MonkeyPatch) -> None:
@@ -50,13 +46,6 @@ def test_invalid_app_env_rejected(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.delenv("APP_ENV", raising=False)
     with pytest.raises(ValidationError):
         Settings(app_env="prod")  # type: ignore[arg-type]
-
-
-def test_api_timeout_bounds(monkeypatch: pytest.MonkeyPatch) -> None:
-    """The ``api_timeout_seconds`` field enforces its declared bounds."""
-    monkeypatch.delenv("API_TIMEOUT_SECONDS", raising=False)
-    with pytest.raises(ValidationError):
-        Settings(api_timeout_seconds=0)
 
 
 def test_get_settings_cached(monkeypatch: pytest.MonkeyPatch) -> None:

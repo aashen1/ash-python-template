@@ -47,10 +47,6 @@ class Settings(BaseSettings):
         description="Emit logs as JSON when true, otherwise use a colored console renderer.",
     )
 
-    # HTTP / API
-    api_timeout_seconds: int = Field(default=30, ge=1, le=600)
-    api_max_retries: int = Field(default=3, ge=0, le=10)
-
 
 @lru_cache(maxsize=1)
 def get_settings() -> Settings:
