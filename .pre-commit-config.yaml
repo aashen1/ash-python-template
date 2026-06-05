@@ -1,6 +1,14 @@
 repos:
   - repo: local
     hooks:
+      # Conventional Commits: enforce commit message format
+      - id: conventional-pre-commit
+        name: conventional commit message
+        entry: conventional-pre-commit
+        language: system
+        stages: [commit-msg]
+        args: []
+
       # Ruff: lint + format
       - id: ruff
         name: ruff check
