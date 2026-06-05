@@ -23,12 +23,10 @@ changelog = "towncrier build"
 [dependencies]
 python = "3.12.*"
 
-[pypi-dependencies]
+# ── Dev feature: editable install + dev tools ─────────────────────────
+[feature.dev.pypi-dependencies]
 # Project itself (editable install so pytest can import source code)
 change-to-your-name = { path = ".", editable = true }
-# Runtime dependencies
-pydantic-settings = ">=2.14.1, <3"
-structlog = ">=25.5.0, <26"
 # Code quality
 ruff = "*"
 mypy = "*"
@@ -50,3 +48,20 @@ mkdocstrings = "*"
 mkdocstrings-python = "*"
 # Changelog
 towncrier = "*"
+
+# ── Prod feature: non-editable install + runtime deps (for Docker) ────
+[feature.prod.pypi-dependencies]
+# Project itself (non-editable install, pixi builds wheel and installs it)
+change-to-your-name = { path = ".", editable = false }
+# Runtime dependencies (must duplicate here since pixi.toml is the manifest,
+# pixi does not auto-read [project.dependencies] from pyproject.toml)
+pydantic-settings = ">=2.14.1, <3"
+structlog = ">=25.5.0, <26"
+
+# ── Environments ──────────────────────────────────────────────────────
+[environments]
+# Default: dev environment with project + all dev tools
+# solve-group ensures default and prod use the same dependency versions
+default = { features = ["dev"], solve-group = "prod-group" }
+# Prod: Docker environment with project + runtime deps only
+prod = { features = ["prod"], solve-group = "prod-group" }
