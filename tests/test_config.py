@@ -8,9 +8,12 @@ from pydantic import ValidationError
 from change_to_your_name.config import Settings, get_settings
 
 
-def test_default_settings() -> None:
+def test_default_settings(monkeypatch: pytest.MonkeyPatch) -> None:
     """Defaults match the values declared in the Settings class."""
-    settings = Settings(_env_file=None)
+    # Clear any env vars that might override defaults
+    for key in ["APP_NAME", "APP_ENV", "APP_DEBUG", "LOG_LEVEL", "LOG_JSON", "API_TIMEOUT_SECONDS", "API_MAX_RETRIES"]:
+        monkeypatch.delenv(key, raising=False)
+    settings = Settings()
     assert settings.app_name == "change-to-your-name"
     assert settings.app_env == "development"
     assert settings.app_debug is True
@@ -27,7 +30,7 @@ def test_environment_override(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("LOG_JSON", "true")
     monkeypatch.setenv("API_TIMEOUT_SECONDS", "5")
 
-    settings = Settings(_env_file=None)
+    settings = Settings()
 
     assert settings.app_name == "from-env"
     assert settings.log_level == "DEBUG"
@@ -35,22 +38,25 @@ def test_environment_override(monkeypatch: pytest.MonkeyPatch) -> None:
     assert settings.api_timeout_seconds == 5
 
 
-def test_invalid_log_level_rejected() -> None:
+def test_invalid_log_level_rejected(monkeypatch: pytest.MonkeyPatch) -> None:
     """An unknown log level is rejected by pydantic validation."""
+    monkeypatch.delenv("LOG_LEVEL", raising=False)
     with pytest.raises(ValidationError):
-        Settings(log_level="NOTALEVEL", _env_file=None)  # type: ignore[arg-type]
+        Settings(log_level="NOTALEVEL")  # type: ignore[arg-type]
 
 
-def test_invalid_app_env_rejected() -> None:
+def test_invalid_app_env_rejected(monkeypatch: pytest.MonkeyPatch) -> None:
     """An unknown app environment is rejected by pydantic validation."""
+    monkeypatch.delenv("APP_ENV", raising=False)
     with pytest.raises(ValidationError):
-        Settings(app_env="prod", _env_file=None)  # type: ignore[arg-type]
+        Settings(app_env="prod")  # type: ignore[arg-type]
 
 
-def test_api_timeout_bounds() -> None:
+def test_api_timeout_bounds(monkeypatch: pytest.MonkeyPatch) -> None:
     """The ``api_timeout_seconds`` field enforces its declared bounds."""
+    monkeypatch.delenv("API_TIMEOUT_SECONDS", raising=False)
     with pytest.raises(ValidationError):
-        Settings(api_timeout_seconds=0, _env_file=None)
+        Settings(api_timeout_seconds=0)
 
 
 def test_get_settings_cached(monkeypatch: pytest.MonkeyPatch) -> None:

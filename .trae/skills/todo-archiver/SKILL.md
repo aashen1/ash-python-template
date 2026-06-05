@@ -57,7 +57,7 @@ For each **New** item (`- [ ]` without `📋`):
    ```bash
    pixi run issue create --type <type> --title "<title>" --priority <priority>
    ```
-   
+
    Example:
    ```bash
    pixi run issue create --type bug --title "Fix login error" --priority high

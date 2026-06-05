@@ -10,14 +10,18 @@ from __future__ import annotations
 
 import requests
 import responses
+from pytest import MonkeyPatch
 
 from change_to_your_name.config import Settings
 
 
 @responses.activate
-def test_responses_mocks_http_call() -> None:
+def test_responses_mocks_http_call(monkeypatch: MonkeyPatch) -> None:
     """``responses`` can stub HTTP calls and the stub is hit by the request."""
-    settings = Settings(_env_file=None)
+    # Clear env vars to get default settings
+    for key in ["APP_NAME", "APP_ENV", "APP_DEBUG", "LOG_LEVEL", "LOG_JSON"]:
+        monkeypatch.delenv(key, raising=False)
+    settings = Settings()
     url = "https://example.com/api"
 
     responses.add(

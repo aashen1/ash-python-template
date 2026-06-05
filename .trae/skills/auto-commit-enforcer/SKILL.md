@@ -74,7 +74,7 @@ Every logical change MUST be committed immediately after completion:
 - Do NOT implement all steps and commit once at the end
 - Each plan item completion triggers an immediate commit
 
-#### Spec Mode  
+#### Spec Mode
 - When executing spec tasks, commit after each spec task completion
 - Follow the spec task order and commit incrementally
 - Do NOT implement all spec tasks and commit once at the end
