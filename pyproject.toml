@@ -39,16 +39,31 @@ src = ["src"]
 
 [tool.ruff.lint]
 select = [
-    "E",   # pycodestyle errors
-    "W",   # pycodestyle warnings
-    "F",   # pyflakes
-    "I",   # isort
-    "UP",  # pyupgrade
-    "B",   # flake8-bugbear
-    "SIM", # flake8-simplify
-    "RUF", # ruff-specific rules
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "UP",   # pyupgrade
+    "B",    # flake8-bugbear
+    "SIM",  # flake8-simplify
+    "RUF",  # ruff-specific rules
+    "C90",  # McCabe complexity
+    "PL",   # Pylint (parameter/branch/statement limits, naming, etc.)
 ]
-ignore = []
+ignore = [
+    "PLR2004", # Magic value used in comparison (allow tunable constants)
+]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.lint.pylint]
+max-args = 6
+max-branches = 12
+max-statements = 50
+max-locals = 20
+max-returns = 6
+max-public-methods = 8
 
 [tool.ruff.lint.isort]
 known-first-party = ["change_to_your_name"]
