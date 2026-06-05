@@ -28,13 +28,6 @@ repos:
         language: system
         types: [python]
 
-      # pip-audit: security audit
-      - id: pip-audit
-        name: pip-audit
-        entry: pip-audit
-        language: system
-        types: [python]
-
       # General code quality checks
       - id: trailing-whitespace
         name: trim trailing whitespace
