@@ -20,5 +20,9 @@ Dockerfile
 .editorconfig
 .pre-commit-config.yaml
 mkdocs.yml
-pixi.toml
-pixi.lock
+site
+CHANGELOG.md
+CONTRIBUTING.md
+SECURITY.md
+.trae
+.trashbin
