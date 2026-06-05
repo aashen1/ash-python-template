@@ -14,11 +14,11 @@ document the trade-offs we deliberately accepted.
 1. Keep all context in chat logs and pull request descriptions.
 2. Maintain a single `ARCHITECTURE.md` document that grows over time.
 3. Use lightweight Architecture Decision Records (ADRs), one per decision,
-   stored under `docs/adr/`.
+   stored under `docs/adr/harness/`.
 
 ## Decision Outcome
 
-Chosen option: **3 — Use lightweight ADRs under `docs/adr/`**.
+Chosen option: **3 — Use lightweight ADRs under `docs/adr/harness/`**.
 
 ADRs are easy to discover, immutable once accepted, and align with the
 "document the why, not the what" philosophy.
