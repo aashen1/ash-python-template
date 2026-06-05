@@ -31,13 +31,8 @@ def test_configure_logging_respects_log_level(
 ) -> None:
     """Changing the log level via env updates the filtering bound logger."""
     monkeypatch.setenv("LOG_LEVEL", "WARNING")
-    get_settings.cache_clear()
     configure_logging(force=True)
     assert get_settings().log_level == "WARNING"
-    # Restore INFO for subsequent tests.
-    monkeypatch.setenv("LOG_LEVEL", "INFO")
-    get_settings.cache_clear()
-    configure_logging(force=True)
 
 
 def test_configure_logging_json_mode(
@@ -45,8 +40,6 @@ def test_configure_logging_json_mode(
 ) -> None:
     """When ``LOG_JSON=true`` the structlog config uses ``JSONRenderer``."""
     monkeypatch.setenv("LOG_JSON", "true")
-    get_settings.cache_clear()
     configure_logging(force=True)
     # The standard logging level should still be applied.
     assert logging.getLogger().level <= logging.WARNING
-    get_settings.cache_clear()
