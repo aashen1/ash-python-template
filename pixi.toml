@@ -3,6 +3,7 @@ authors = ["Ash(GitHub@aashen1)"]
 channels = ["conda-forge"]
 name = "change-to-your-name"
 platforms = ["linux-64"]
+# NOTE: Keep this version in sync with pyproject.toml [project].version
 version = "0.1.0"
 
 [tasks]
