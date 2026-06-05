@@ -64,11 +64,14 @@ fi
 FILES=(
   pyproject.toml
   pixi.toml
+  mkdocs.yml
   .env.example
   Dockerfile
   SECURITY.md
   CONTRIBUTING.md
   README.md
+  docs/index.md
+  docs/api.md
   src/$PROJECT_SNAKE/__init__.py
   src/$PROJECT_SNAKE/__main__.py
   src/$PROJECT_SNAKE/config.py
@@ -116,6 +119,12 @@ if [[ -n "$GITHUB_REPO" ]]; then
   if [[ -f CONTRIBUTING.md ]]; then
     sed -i "s|<your-username>|$GITHUB_OWNER|g" CONTRIBUTING.md
     echo "Updated GitHub username in CONTRIBUTING.md"
+  fi
+  # .github/ISSUE_TEMPLATE/config.yml: replace <owner>.github.io/<repo>
+  if [[ -f .github/ISSUE_TEMPLATE/config.yml ]]; then
+    GITHUB_REPO_NAME="${GITHUB_REPO#*/}"
+    sed -i "s|<owner>\.github\.io/<repo>|$GITHUB_OWNER.github.io/$GITHUB_REPO_NAME|g" .github/ISSUE_TEMPLATE/config.yml
+    echo "Updated GitHub Pages URL in .github/ISSUE_TEMPLATE/config.yml"
   fi
 fi
 

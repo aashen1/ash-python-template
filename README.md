@@ -40,6 +40,9 @@ After creating your repo from this template, search and replace the following:
 | 11 | `pyproject.toml` | `known-first-party` | `change_to_your_name` | your package name |
 | 12 | `pyproject.toml` | coverage `source` | `src/change_to_your_name` | `src/your_package` |
 | 13 | `pixi.toml` | pypi-dependencies key | `change-to-your-name` | your project name |
+| 14 | `mkdocs.yml` | `site_name` | `change-to-your-name` | your project name |
+| 15 | `docs/index.md` | title | `change-to-your-name` | your project name |
+| 16 | `docs/api.md` | mkdocstrings reference | `change_to_your_name` | your package name |
 
 > **Tip**: You can also run `bash scripts/init.sh <your-project-name>` to automate all replacements.
 
