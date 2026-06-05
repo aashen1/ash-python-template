@@ -11,7 +11,7 @@
 If you discover a security vulnerability, please report it by:
 
 1. **Email**: Send details to the project maintainer (check GitHub profile for contact info)
-2. **GitHub Security Advisory**: Use [GitHub's private vulnerability reporting](https://github.com/aashen1/change-to-your-name/security/advisories/new)
+2. **GitHub Security Advisory**: Use [GitHub's private vulnerability reporting](https://github.com/<owner>/<repo>/security/advisories/new)
 
 ### What to Include
 
