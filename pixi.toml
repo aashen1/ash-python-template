@@ -26,7 +26,7 @@ python = "3.12.*"
 [pypi-dependencies]
 # Project itself (editable install so pytest can import source code)
 change-to-your-name = { path = ".", editable = true }
-# Runtime dependencies (also declared in pyproject.toml [project] dependencies)
+# Runtime dependencies
 pydantic-settings = ">=2.14.1, <3"
 structlog = ">=25.5.0, <26"
 # Code quality
