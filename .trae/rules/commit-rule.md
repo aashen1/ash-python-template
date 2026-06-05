@@ -19,4 +19,3 @@ scene: git_message
 ## Detail
 
 Full patterns, examples, and self-correction protocol: invoke skill `auto-commit-enforcer`.
-Deep reference: `docs/guides/commit-conventions.md`.

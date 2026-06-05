@@ -30,6 +30,4 @@ When picking up a feature, read in this order:
 - Having multiple spec.md/progress.md/checklist.md for the same feature
 - Quoting completion status from old numbered folders instead of progress.md
 
-## Detail
 
-Full methodology, templates, and migration guide: `docs/dev-guides/living-spec.md`.

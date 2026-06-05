@@ -11,22 +11,15 @@ This skill defines the directory structure, naming rules, and workflow for archi
 
 ```
 docs/archive/
-├── archive-log.md              # Archive operation log (append-only)
-├── idea-ai-era-git-practice.md # Standalone essay (root level)
+├── archive-log.md          # Archive operation log (append-only)
 │
-├── plans/                      # All plan documents
-│   ├── v0.1.8/                 # Version-specific plans
-│   ├── v0.1.9/
-│   └── documents-refactor/     # Topic-specific plan groups
+├── plans/                  # All plan documents
+│   └── vX.Y.Z/            # Version-specific plans (optional)
 │
-├── reports/                    # All report documents
+├── reports/                # All report documents
 │
-├── specs/                      # All spec triplets (spec.md/checklist.md/tasks.md)
-│   └── v0.1.9/                 # Version-specific specs
-│
-├── flagembedding-to-transformers/  # Standalone topic directories
-├── meal/
-└── test-suite-analysis/
+└── specs/                  # All spec triplets (spec.md/checklist.md/tasks.md)
+    └── <feature-name>/     # Feature-specific spec directories
 ```
 
 ## Classification Rules
@@ -52,7 +45,6 @@ Any spec triplet directory containing `spec.md` + `checklist.md` + `tasks.md`:
 ### Standalone topic directories
 Coherent topic groups that don't fit plans/reports/specs:
 - Must be self-contained (all related files in one directory)
-- Examples: `meal/`, `test-suite-analysis/`, `flagembedding-to-transformers/`
 
 ## Version Grouping
 
@@ -65,13 +57,12 @@ When archiving documents tied to a specific version:
 
 1. **English only** — no Chinese characters in filenames
 2. **Lowercase with hyphens** — no underscores, no spaces, no CamelCase
-   - ✅ `ragas-integration-plan.md`
-   - ❌ `ragas_integration_plan.md`
-   - ❌ `Ragas_Integration_Plan.md`
+   - `ragas-integration-plan.md`
+   - NOT `ragas_integration_plan.md`
+   - NOT `Ragas_Integration_Plan.md`
 3. **Spec triplet files** — always `spec.md`, `checklist.md`, `tasks.md` (no prefix)
 4. **Descriptive names** — `<topic>-<type>.md` pattern for standalone files
    - `fix-evaluation-bugs.md` (not just `fix.md`)
-   - `v0.1.8-merge-and-release-plan.md` (version prefix for version-specific docs)
 
 ## Archive Workflow
 
@@ -82,28 +73,6 @@ When archiving documents tied to a specific version:
 5. **Check for duplicates**: if the same content already exists in archive, move duplicate to `.trashbin/`
 6. **Log** the operation in `archive-log.md`
 7. **Commit** with message: `chore: archive <description>`
-
-## archive-log.md Format
-
-Append a new section with date:
-
-```markdown
-## YYYY-MM-DD — <Brief description>
-
-### Plans (docs/archive/plans/)
-- filename.md (brief description)
-
-### Reports (docs/archive/reports/)
-- filename.md (brief description)
-
-### Specs (docs/archive/specs/)
-- directory-name/ (brief description)
-
-### Renamed
-| Old name | New name |
-|----------|----------|
-| old-name.md | new-name.md |
-```
 
 ## Anti-Patterns (DO NOT)
 
