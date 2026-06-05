@@ -92,20 +92,3 @@ omit = ["tests/*"]
 [tool.coverage.report]
 show_missing = true
 fail_under = 80
-
-# ── towncrier ─────────────────────────────────────────────────────────
-[tool.towncrier]
-package = "change_to_your_name"
-package_dir = "src"
-directory = "changes"
-filename = "CHANGELOG.md"
-title_format = "## {version} ({project_date})"
-underlines = ["", "", ""]
-type = [
-    { name = "Breaking", directory = "breaking", showcontent = true },
-    { name = "Feature", directory = "feature", showcontent = true },
-    { name = "Bugfix", directory = "bugfix", showcontent = true },
-    { name = "Doc", directory = "doc", showcontent = true },
-    { name = "Removal", directory = "removal", showcontent = true },
-    { name = "Misc", directory = "misc", showcontent = false },
-]

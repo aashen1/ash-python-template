@@ -18,8 +18,6 @@ security = "pip-audit"
 # Documentation
 docs = "mkdocs serve"
 docs-build = "mkdocs build"
-# Changelog
-changelog = "towncrier build"
 
 [dependencies]
 python = "3.12.*"
@@ -47,8 +45,6 @@ mkdocs = "*"
 mkdocs-material = "*"
 mkdocstrings = "*"
 mkdocstrings-python = "*"
-# Changelog
-towncrier = "*"
 
 # ── Prod feature: non-editable install + runtime deps (for Docker) ────
 [feature.prod.pypi-dependencies]
