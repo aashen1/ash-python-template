@@ -16,7 +16,6 @@ import structlog
 
 from change_to_your_name.config import get_settings
 
-
 _configured: bool = False
 
 
@@ -27,7 +26,7 @@ def _is_configured() -> bool:
 
 def _mark_configured() -> None:
     """Record that :func:`configure_logging` has been run."""
-    global _configured
+    global _configured  # noqa: PLW0603
     _configured = True
 
 
@@ -41,7 +40,7 @@ def configure_logging(force: bool = False) -> None:
         return
 
     if force:
-        global _configured
+        global _configured  # noqa: PLW0603
         _configured = False
 
     settings = get_settings()
