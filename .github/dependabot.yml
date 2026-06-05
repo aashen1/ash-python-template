@@ -1,16 +1,17 @@
 version: 2
 
 updates:
-  - package-ecosystem: pip
-    directory: /
-    schedule:
-      interval: weekly
-    commit-message:
-      prefix: "deps(pip):"
-
+  # Dependabot's pip ecosystem only scans pyproject.toml [project.dependencies].
+  # Pixi dependencies are tracked by the "Update lock files" workflow instead.
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: weekly
+      interval: monthly
     commit-message:
       prefix: "deps(ci):"
+    groups:
+      dependencies:
+        patterns:
+          - "*"
+    cooldown:
+      default-days: 7
