@@ -62,6 +62,7 @@ fi
 # ── Replace in files ─────────────────────────────────────────────────────────
 # Order matters: replace longer strings first to avoid partial matches
 FILES=(
+  CLAUDE.md
   pyproject.toml
   pixi.toml
   mkdocs.yml

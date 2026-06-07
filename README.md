@@ -8,7 +8,14 @@ Change to your description.
 
 1. Click **Use this template** to create a new repository
 2. Clone your new repository
-3. Replace all project name placeholders (see checklist below)
+3. **Run the initialization script** to replace all placeholders:
+
+```bash
+bash scripts/init.sh <your-project-name> "[description]" "[github-owner/repo]"
+```
+
+> **This is the recommended way.** The script renames the source directory and replaces all placeholder strings (`change-to-your-name`, `change_to_your_name`, `Change-to-your-name`) across the entire project. See the manual checklist below if you prefer to do it by hand.
+
 4. Install dependencies:
 
 ```bash
@@ -65,6 +72,18 @@ src/change_to_your_name/   # Source code
 tests/                      # Test suite
 docs/                       # Documentation
 ```
+
+## Configuration
+
+This project uses two separate configuration files:
+
+| File | Purpose |
+|------|---------|
+| `pixi.toml` | Dependency management (Python version, pypi/conda deps, pixi tasks, environments) |
+| `pyproject.toml` | Package metadata & tool configuration (ruff, mypy, pytest, coverage) |
+
+- **Adding dependencies**: `pixi add (--pypi) <package>` (updates `pixi.toml`). Runtime deps must also be added to `pyproject.toml` `[project.dependencies]`.
+- **Changing tool settings**: Edit `pyproject.toml` only.
 
 ## License
 
