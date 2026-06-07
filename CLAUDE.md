@@ -49,7 +49,8 @@ This project uses **two separate configuration files** with distinct responsibil
 
 ### Key Rules
 
-- **Adding a dependency**: Use `pixi add --pypi <package>` or `pixi add <package>`(for pypi or conda respectively). Do NOT use `pip install`.
+- **Adding a dependency**: Use `pixi add --feature <feature-name> --pypi <package>` or `pixi add --feature <feature-name> <package>` (for pypi or conda respectively). Always specify `--feature` to target the correct environment (e.g. `prod`, `dev`), since this template uses multi-environment config. Do NOT use `pip install`.
+- **Conda vs PyPI**: Either channel is fine per-package, but pixi resolves conda dependencies **before** PyPI ones. A conda package must **never** depend on a PyPI package — if a conda dep needs something only available on PyPI, add that dep via conda too, or move both to PyPI.
 - **Runtime dependencies must be declared in BOTH files**: `pixi.toml` `[feature.prod.pypi-dependencies]` and `pyproject.toml` `[project.dependencies]`. Pixi does not auto-read `pyproject.toml` dependencies.
 - **Tool config changes** (ruff rules, mypy settings, pytest options): Edit `pyproject.toml` only.
 - **Task changes** (new pixi tasks, environment definitions): Edit `pixi.toml` only.

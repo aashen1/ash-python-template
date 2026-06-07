@@ -82,7 +82,8 @@ This project uses two separate configuration files:
 | `pixi.toml` | Dependency management (Python version, pypi/conda deps, pixi tasks, environments) |
 | `pyproject.toml` | Package metadata & tool configuration (ruff, mypy, pytest, coverage) |
 
-- **Adding dependencies**: `pixi add (--pypi) <package>` (updates `pixi.toml`). Runtime deps must also be added to `pyproject.toml` `[project.dependencies]`.
+- **Adding dependencies**: `pixi add --feature <feature-name> (--pypi) <package>` (updates `pixi.toml`). Always specify `--feature` to target the correct environment (e.g. `prod`, `dev`), since this template uses multi-environment config. Runtime deps must also be added to `pyproject.toml` `[project.dependencies]`.
+- **Conda vs PyPI**: `--pypi` selects the PyPI channel; omitting it uses conda-forge. Either is fine per-package, but note that pixi resolves conda dependencies **before** PyPI ones. A conda package must **never** depend on a PyPI package — if a conda dep needs something only available on PyPI, add that dep via conda too, or move both to PyPI.
 - **Changing tool settings**: Edit `pyproject.toml` only.
 
 ## License
