@@ -64,3 +64,21 @@ structlog = ">=25.5.0, <26"
 default = { features = ["dev"], solve-group = "prod-group" }
 # Prod: Docker environment with project + runtime deps only
 prod = { features = ["prod"], solve-group = "prod-group" }
+
+
+[pypi-options]
+index-url = "https://pypi.mirrors.ustc.edu.cn/simple"
+# extra-index-urls = ["https://pypi.org/simple"]
+# index-strategy = "unsafe-best-match"
+# find-links = [
+# # Note: similar to --find-links option in pip.
+#     { url = 'https://mirrors.aliyun.com/pytorch-wheels/cu126' },
+#     { url = 'https://mirrors.aliyun.com/pytorch-wheels/cpu/' },
+#   # { path = 'D:/useradmin/torch_cache' },
+#   # { path = '.cache/torch/cuda_whl' },
+# ]
+
+# extra pixi global config:
+# [mirrors]
+# "https://conda.anaconda.org/bioconda" = ["https://mirrors.ustc.edu.cn/anaconda/cloud/bioconda/"]
+# "https://conda.anaconda.org/conda-forge" = ["https://mirrors.ustc.edu.cn/anaconda/cloud/conda-forge/"]
