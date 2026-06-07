@@ -44,14 +44,14 @@ This project uses **two separate configuration files** with distinct responsibil
 
 | File | Purpose | What goes here |
 |------|---------|---------------|
-| `pixi.toml` | **Dependency management & task runner** | Python version, pypi-dependencies, conda dependencies, pixi tasks, environments (dev/prod) |
+| `pixi.toml` | **Dependency management & task runner** | Python version, all pypi-dependencies (runtime + dev), conda dependencies, pixi tasks, environments (dev/prod) |
 | `pyproject.toml` | **Tool configuration & package metadata** | Build system, project metadata (name, version, description), ruff/mypy/pytest/coverage settings |
 
 ### Key Rules
 
 - **Adding a dependency**: Use `pixi add --feature <feature-name> --pypi <package>` or `pixi add --feature <feature-name> <package>` (for pypi or conda respectively). Always specify `--feature` to target the correct environment (e.g. `prod`, `dev`), since this template uses multi-environment config. Do NOT use `pip install`.
 - **Conda vs PyPI**: Either channel is fine per-package, but pixi resolves conda dependencies **before** PyPI ones. A conda package must **never** depend on a PyPI package — if a conda dep needs something only available on PyPI, add that dep via conda too, or move both to PyPI.
-- **Runtime dependencies must be declared in BOTH files**: `pixi.toml` `[feature.prod.pypi-dependencies]` and `pyproject.toml` `[project.dependencies]`. Pixi does not auto-read `pyproject.toml` dependencies.
+- **Runtime dependencies go in `pixi.toml` only**: Declare runtime deps in `[feature.prod.pypi-dependencies]`. They are available in the default environment via feature composition (`features = ["dev", "prod"]`). Do NOT duplicate them in `pyproject.toml` `[project.dependencies]`.
 - **Tool config changes** (ruff rules, mypy settings, pytest options): Edit `pyproject.toml` only.
 - **Task changes** (new pixi tasks, environment definitions): Edit `pixi.toml` only.
 - **Version pinning**: Let pixi handle version resolution. Avoid hardcoding versions in `pixi.toml` unless needed for compatibility.
