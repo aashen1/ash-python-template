@@ -10,7 +10,7 @@ version = "0.1.0"
 # Code quality
 lint = "ruff check ."
 format = "ruff format ."
-typecheck = "mypy src/"
+typecheck = "ty check src/"
 # Testing
 test = "pytest"
 # Security
@@ -30,7 +30,7 @@ python = "3.12.*"
 change-to-your-name = { path = ".", editable = true }
 # Code quality
 ruff = "*"
-mypy = "*"
+ty = ">=0.0.47, <0.0.48"
 # Testing
 pytest = "*"
 pytest-cov = "*"

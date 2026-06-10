@@ -63,17 +63,12 @@ known-first-party = ["change_to_your_name"]
 quote-style = "double"
 indent-style = "space"
 
-# ── mypy ──────────────────────────────────────────────────────────────
-[tool.mypy]
-strict = true
-python_version = "3.12"
-warn_return_any = true
-warn_unused_configs = true
-disallow_untyped_defs = true
+# ── ty ────────────────────────────────────────────────────────────────
+[tool.ty.environment]
+python-version = "3.12"
 
-[[tool.mypy.overrides]]
-module = ["tests.*"]
-disallow_untyped_defs = false
+[tool.ty.src]
+exclude = ["tests"]
 
 # ── pytest ────────────────────────────────────────────────────────────
 [tool.pytest.ini_options]

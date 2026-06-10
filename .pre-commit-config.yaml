@@ -21,10 +21,10 @@ repos:
         language: system
         types: [python]
 
-      # mypy: static type checking
-      - id: mypy
-        name: mypy
-        entry: mypy --strict
+      # ty: static type checking
+      - id: ty
+        name: ty check
+        entry: ty check
         language: system
         types: [python]
 

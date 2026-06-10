@@ -3,6 +3,7 @@
 .pixi
 .ruff_cache
 .mypy_cache
+.ty_cache
 .pytest_cache
 __pycache__
 *.pyc

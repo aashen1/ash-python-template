@@ -124,7 +124,7 @@ docs: update installation instructions
 This project uses:
 
 - **Ruff** for linting and formatting
-- **MyPy** for type checking (strict mode)
+- **ty** for type checking
 - **pytest** for testing
 
 Configuration is in `pyproject.toml`.
