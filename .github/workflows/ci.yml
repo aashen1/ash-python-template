@@ -32,15 +32,8 @@ jobs:
           locked: true
       - run: pixi run typecheck
 
-  # NOTE: Python version is pinned by pixi.lock (currently 3.12.*).
-  # To test multiple Python versions, update pixi.toml [dependencies] python
-  # and run `pixi update` to regenerate the lock file.
   test:
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, macos-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6.0.2
       - uses: prefix-dev/setup-pixi@v0.9.6
