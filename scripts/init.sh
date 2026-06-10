@@ -131,8 +131,10 @@ fi
 
 echo ""
 echo "=== Done! ==="
+echo "Installing Git hooks..."
+pixi run pre-commit install
+pixi run pre-commit install --hook-type post-merge
+echo ""
 echo "Next steps:"
 echo "  1. Review the changes: git diff"
-echo "  2. Install dependencies: pixi install"
-echo "  3. Install Git hooks:    pixi run pre-commit install"
-echo "  4. Run tests:            pixi run test"
+echo "  2. Run tests:            pixi run test"

@@ -69,3 +69,16 @@ repos:
         entry: check-added-large-files --maxkb=500
         language: system
         types: [text]
+
+      # ── Post-merge hooks (uncomment to enable) ─────────────────────
+      # These hooks run automatically after `git pull` (merge).
+      # Uncomment and customize the entry command to suit your workflow.
+      # Common use cases: run integration tests, E2E tests, sync deps, etc.
+      #
+      # - id: post-merge
+      #   name: post-merge task
+      #   entry: ''  # e.g. "pixi install", "pixi run test-e2e", etc.
+      #   language: system
+      #   stages: [post-merge]
+      #   always_run: true
+      #   pass_filenames: false
