@@ -13,8 +13,8 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.2
-      - uses: prefix-dev/setup-pixi@v0.9.6
+      - uses: actions/checkout@v7.0.1
+      - uses: prefix-dev/setup-pixi@v0.10.0
         with:
           cache: true
           cache-write: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
@@ -24,8 +24,8 @@ jobs:
   typecheck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.2
-      - uses: prefix-dev/setup-pixi@v0.9.6
+      - uses: actions/checkout@v7.0.1
+      - uses: prefix-dev/setup-pixi@v0.10.0
         with:
           cache: true
           cache-write: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
@@ -35,8 +35,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.2
-      - uses: prefix-dev/setup-pixi@v0.9.6
+      - uses: actions/checkout@v7.0.1
+      - uses: prefix-dev/setup-pixi@v0.10.0
         with:
           cache: true
           cache-write: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
@@ -46,8 +46,8 @@ jobs:
   security:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.2
-      - uses: prefix-dev/setup-pixi@v0.9.6
+      - uses: actions/checkout@v7.0.1
+      - uses: prefix-dev/setup-pixi@v0.10.0
         with:
           cache: true
           cache-write: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
